@@ -1,6 +1,27 @@
 // Variables de estado
 let numHuevos = 0;
 
+// a capturar el evento 'submit'. Este es el evento que se captura cuando un usuario hace click en el botón de submit de un formulario
+
+let form = document.querySelector("form");
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // manera 1 de recuperar el valor de un campo del formulario
+    let width = document.querySelector("#width").value;
+
+    document.querySelector("img").style.width = width + "px";
+
+    // otra manera de recuperar los datos de un formulario
+    let formData = new FormData(form);
+
+    // recupero el color que el usuario ha introducido el control
+    let color = formData.get("color");
+    // width = formData.get("width")
+    document.querySelector("img").style.border = `5px dashed ${color}`;
+});
+
 function pintarCielo() {
     // Pintar el cielo de azul es cambiar el color de fondo del body a azul
     //document.querySelector("body").style.backgroundColor = "blue";
@@ -51,8 +72,61 @@ btnOcultarDinoseto.onclick = ocultarDinoseto;
 let btnPonerHuevo = document.querySelector("#nuevo-huevo");
 btnPonerHuevo.addEventListener("click", ponerHuevo);
 
+
 // asociar otro evento click al btnPonerHuevo que haga que por consola el dinosaurio diga "He puesto un nuevo! Y la fecha es ..."
 btnPonerHuevo.addEventListener("click", function () {
+
     numHuevos = numHuevos + 1;
     console.log(`He puesto mi huevo número ${numHuevos} y son las ` + Date());
 });
+
+document.body.addEventListener("keyup", function (event) {
+    // console.log("He pulsado una tecla");
+    // console.dir(event.key);
+});
+
+// Primer ejemplo de código asíncrono
+
+// Variable va a decirnos el número de segundos que ha pasado desde que hemos abierto la app
+let segundos = 0;
+
+// Ejecutame la función cada 1000ms (1 segundo)
+// setInterval(() => {
+//     segundos++;
+//     console.log("hola hola! Desde que abriste la app han pasado estos segundos: " + segundos);
+// }, 1000);
+
+
+// evento change
+let questionarioDino = document.querySelector("#questionario");
+questionarioDino.addEventListener("change", function (event) {
+
+    let resultado = document.querySelector("#resultado-test");
+    resultado.style.display = "block";
+
+    if (event.target.value == "1") {
+        resultado.style.color = "green";
+        resultado.textContent = "¡Respuesta Correcta!";
+    }
+
+    else {
+        resultado.style.color = "red";
+        resultado.textContent = "Necesitas mejorar en tus conocimientos réptiles";
+    }
+
+});
+
+// evento input
+document.querySelector("#cambiaTexto").addEventListener("change", (event) => {
+
+    let nuevoTexto = event.target.value;
+
+    document.querySelector("h1").textContent = nuevoTexto;
+});
+
+// evento input a través de la propiedad oninput
+document.querySelector("#cambiaColorFondo").oninput = function (event) {
+    let nuevoColor = event.target.value;
+
+    document.body.style.backgroundColor = nuevoColor;
+}

@@ -20,6 +20,12 @@
         <h1 id="title" class="titulo">El DinoDOM</h1>
     </header>
     <section class="container">
+        <label for="cambiaTexto">Cambia el texto del título</label>
+        <input type="text" id="cambiaTexto">
+        <label for="cambiaFondo">Cambia el color del fondo, ahora con el evento input!</label>
+        <input type="color" id="cambiaColorFondo">
+    </section>
+    <section class="container">
         <div id="dinoseto" class="grid">
             <img src="./img/dinoseto.png" alt="">
         </div>
@@ -32,9 +38,28 @@
     </section>
 
     <section class="container">
-        <label for="cambiaTexto">Cambia el texto del título</label>
-        <input type="text" id="cambiaTexto">
+        <p>¿A qué época prehistórica pertenece este dinosaurio?</p>
+        <select id="questionario">
+            <option value="">Seleccionar una opción</option>
+            <option value="1">Cretacio (40000 años antes de cristo)</option>
+            <option value="2">Potaxio</option>
+            <option value="3">Cambrico</option>
+        </select>
+        <p id="resultado-test" style="display:none"></p>
     </section>
+
+    <section class="container">
+        <h2>Personaliza tu dinoseto</h2>
+        <form>
+            <label for="width">Ancho del dinoseto(en píxeles)</label>
+            <input type="number" name="width" id="width" placeholder="150" min="5" max="400" required>
+            <label for="color">Color del borde</label>
+            <input type="color" name="color" id="color">
+            <input type="submit" value="Aplicar">
+        </form>
+    </section>
+
+
 
     <section class="container">
         <div class="grid" style="gap:1rem">
