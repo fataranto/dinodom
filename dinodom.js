@@ -130,3 +130,23 @@ document.querySelector("#cambiaColorFondo").oninput = function (event) {
 
     document.body.style.backgroundColor = nuevoColor;
 }
+
+// Recuperar todos los elementos del tipo <p> que esten dentro del id="animales"
+let animales = document.querySelectorAll("#animales p");
+
+animales.forEach(animal => {
+    animal.addEventListener("click", function (event) {
+        console.log(event.target.textContent);
+    })
+})
+
+animales.forEach(animal => {
+    // para cada nodo <p> le asociamos un evento
+    animal.addEventListener("mouseenter", function (event) {
+        event.target.style.backgroundColor = "yellow";
+    });
+
+    animal.addEventListener("mouseleave", function (event) {
+        event.target.style.backgroundColor = "white";
+    });
+});
